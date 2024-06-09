@@ -1,15 +1,11 @@
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Parameterized.class)
 public class PositiveTest {
@@ -30,8 +26,15 @@ public class PositiveTest {
     }
 
     @Test
-    public void NamePrintTest(){
+    @DisplayName("Test positive scenarios")
+    @Description("This test is for check that name can be printed")
+    public void namePrintTest(){
         Account account = new Account(name);
+        nameCheck(account);
+    }
+
+    @Step
+    public void nameCheck(Account account){
         Assert.assertTrue(account.checkNameToEmboss());
     }
 
